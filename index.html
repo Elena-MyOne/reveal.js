@@ -1,40 +1,628 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
 
-		<title>reveal.js</title>
+    <title>reveal.js</title>
 
-		<link rel="stylesheet" href="dist/reset.css">
-		<link rel="stylesheet" href="dist/reveal.css">
-		<link rel="stylesheet" href="dist/theme/black.css">
+    <link rel="stylesheet" href="dist/reset.css" />
+    <link rel="stylesheet" href="dist/reveal.css" />
+    <link rel="stylesheet" href="dist/theme/black.css" />
 
-		<!-- Theme used for syntax highlighted code -->
-		<link rel="stylesheet" href="plugin/highlight/monokai.css">
-	</head>
-	<body>
-		<div class="reveal">
-			<div class="slides">
-				<section>Slide 1</section>
-				<section>Slide 2</section>
-			</div>
-		</div>
+    <!-- Theme used for syntax highlighted code -->
+    <link rel="stylesheet" href="plugin/highlight/monokai.css" />
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <!-- Slide 1 -->
+        <section style="text-align: center">
+          <p>Canvas</p>
+          
+          <img src="./assets/slide1/1.jpg" alt="mario game screenshot" />
+        </section>
+        <!-- Slide 2 -->
+        <section>
+          <p>What Canvas Can Do</p>
+          <ul style="list-style-type: none;text-align: center;font-size: 30px;">
+            <li>shapes</li>
+            <li>text</li>
+            <li>lines</li>
+            <li>images</li>
+            <li>video</li>
+            <li>transitions</li>
+            <li>animations</li>
+          </ul>
+        </section>
+        <!-- Slide 3 -->
+        <section>
+          <p>How Canvas Works</p>
+          <img src="./assets/slide3/1.jpg" alt="canvas coordinate system" />
+          <p style="font-size: 30px;">The canvas element is declared using the tag</p>
+          <pre><code data-trim style="text-align: left">
+            
+            <canvas id="canvas" width="300" height="150">
+              Fallback content here
+            </canvas>
+          </code></pre>
+        </section>
+        <!-- Slide 4 -->
+        <section>
+          <p>Attributes and Functions</p>
+          <p style="text-align: left; width: 100%; padding-top: 50px;font-size: 30px;">Attributes:</p>
+          <pre><code data-trim style="text-align: center;">
+              width="300" 
+              height="150"
+            </code></pre>
+          <p style="text-align: left; width: 100%; padding-top: 50px;font-size: 30px;">Functions:</p>
+          <pre><code data-trim style="text-align: center;">
+            toDataURL(type) 
+            getContext(type)
+            </code></pre>
+        </section>
+        <!-- Slide 5 -->
+        <section>
+          <p>Styles</p>
+          <pre><code style="text-align: left;">
+            #canvas1 {
+              border: 1px solid #ffffff;
+              background-color: rgb(243, 170, 215);
+            }
 
-		<script src="dist/reveal.js"></script>
-		<script src="plugin/notes/notes.js"></script>
-		<script src="plugin/markdown/markdown.js"></script>
-		<script src="plugin/highlight/highlight.js"></script>
-		<script>
-			// More info about initialization & config:
-			// - https://revealjs.com/initialization/
-			// - https://revealjs.com/config/
-			Reveal.initialize({
-				hash: true,
+            <canvas id="canvas1" width="200" height="200"> 
+              Your browser does not support canvas 
+            </canvas>
+          </code></pre>
 
-				// Learn about plugins: https://revealjs.com/plugins/
-				plugins: [ RevealMarkdown, RevealHighlight, RevealNotes ]
-			});
-		</script>
-	</body>
+          <canvas width="200" height="200" style="border: 1px solid #ffffff; background-color: rgb(243, 170, 215); margin-top: 50px"> Your browser does not support canvas </canvas>
+        </section>
+        <!-- Slide 6 -->
+        <section>
+          <p>The Canvas Drawing Content</p>
+          <p style="font-size: 30px;">Can be: 2D or 3D</p>
+          
+          <pre><code data-trim style="text-align: center;margin-top: 50px"">
+
+            const ctx = theCanvas.getContext("2d")
+
+          </code></pre>
+
+          <p style="margin-top: 50px;font-size: 30px;"">
+            This function will return an object that implements the CanvasRenderingContext2D interface.
+            <a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D"> https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D</a>
+          </p>
+        </section>
+        <!-- Slide 7 -->
+        <section>
+          <section>
+            <p>Drawing with Colors and Styles</p>
+            <table style="margin-top: 50px;font-size: 30px;">
+              <tbody>
+                <tr>
+                  <td>fillStyle</td>
+                  <td>Style to use when filling objects; property values: CSS color, gradient, or pattern; defaults to black</td>
+                </tr>
+                <tr>
+                  <td>strokeStyle</td>
+                  <td>Style to use on object strokes; properties values: CSS color, gradient, or pattern: default to black</td>
+                </tr>
+                <tr>
+                  <td>lineWidth</td>
+                  <td>Width of the pen to use when drawing line; default to 1</td>
+                </tr>
+              </tbody>
+            </table></section>
+          <section>
+            <p>Code example</p>
+            <pre><code style="font-size: 18px;" data-trim>
+                const canvas = document.getElementById("canvas1");
+                canvas.width = 400;
+                canvas.height = 400;
+                if (canvas && canvas.getContext) {
+                  const ctx = canvas.getContext("2d");
+
+                  if (ctx) {
+                    ctx.fillStyle = "blue";
+                    ctx.fillRect(10, 10, 100, 100);
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.strokeRect(10, 10, 100, 100);
+                  }
+                }
+            </code></pre>
+          </section>
+          <section>
+            <p>Result:</p>
+            <canvas id="canvas1" style="background-color: #444444;margin-top: 50px;"> Your browser does not support canvas </canvas>
+            <script>
+              window.addEventListener("load", function () {
+                const canvas = document.getElementById("canvas1");
+                canvas.width = 400;
+                canvas.height = 400;
+                if (canvas && canvas.getContext) {
+                  const ctx = canvas.getContext("2d");
+
+                  if (ctx) {
+                    ctx.fillStyle = "blue";
+                    ctx.fillRect(10, 10, 100, 100);
+                    ctx.lineWidth = 5;
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.strokeRect(10, 10, 100, 100);
+                  }
+                }
+              })
+              
+            </script>
+          </section>
+        </section>
+        <!-- Slide 8 -->
+        <section>
+            <p>Drawing Rectangles</p>
+            <table style="margin-top: 50px;font-size: 30px;">
+              <tbody>
+                <tr>
+                  <td>clearRect(x,y,w,h)</td>
+                  <td>will erase the given rectangle on the canvas</td>
+                </tr>
+                <tr>
+                  <td>strokeRect(x,y,w,h)</td>
+                  <td>will stroke the specified rectangle with the current stroke style</td>
+                </tr>
+                <tr>
+                  <td>fillRect(x,y,w,h)</td>
+                  <td>will fill the specified rectangle with current fill style</td>
+                </tr>
+              </tbody>
+            </table>
+        </section>
+        <!-- Slide 9 -->
+        <section>
+          <section>
+            <h2>Drawing Lines</h2>
+            <table style="margin-top: 30px;font-size: 30px;">
+              <tbody>
+                <tr>
+                  <td>moveTo(x,y)</td>
+                  <td>Moves the drawing pen to (x, y); doesn't perform any drawing</td>
+                </tr>
+                <tr>
+                  <td>lineTo(x,y)</td>
+                  <td>Drawing the line from the current pen position to (x, y)</td>
+                </tr>
+                <tr>
+                  <td>lineWidth</td>
+                  <td>Gets or sets the with of the pan</td>
+                </tr>
+                <tr>
+                  <td>lineCap</td>
+                  <td>Gets or sets the line end-cap type(butt, round, square</td>
+                </tr>
+                <tr>
+                  <td>lineJoin</td>
+                  <td>Gets or sets the method used to join lines (default in miter)</td>
+                </tr>
+                <tr>
+                  <td>miterLimit</td>
+                  <td>Gets or sets the limit at which line (default in 10)</td>
+                </tr>
+                <tr>
+                  <td>beginPath()</td>
+                  <td>Begins a set of multiple drawing commands as a single path</td>
+                </tr>
+                <tr>
+                  <td>stroke()</td>
+                  <td>Strokes the currently open path that was started by beginPath()</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h6>Code example</h6>
+            <pre><code style="font-size: 18px;" data-trim>
+                const theCanvas = document.getElementById('Canvas3');
+                if (theCanvas && theCanvas.getContext) {
+                  var ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    // draw lines of varying widths
+                    for (var i = 0; i < 10; i++) {
+                      ctx.beginPath();
+                      ctx.lineWidth = i + 1;
+                      ctx.moveTo(25, 25 + i * 15);
+                      ctx.lineTo(475, 25 + i * 15);
+                      ctx.stroke();
+                    }
+                  }
+                }
+            </code></pre>
+          </section>
+          <section>
+            <canvas id="Canvas3" width="500" height="200" style="background-color: #888787;">Your browser does not support canvas.</canvas>
+            <script>
+                window.addEventListener("load", function () {
+                const theCanvas = document.getElementById('Canvas3');
+                if (theCanvas && theCanvas.getContext) {
+                  var ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    // draw lines of varying widths
+                    for (var i = 0; i < 10; i++) {
+                      ctx.beginPath();
+                      ctx.lineWidth = i + 1;
+                      ctx.moveTo(25, 25 + i * 15);
+                      ctx.lineTo(475, 25 + i * 15);
+                      ctx.stroke();
+                    }
+                  }
+                }
+              })
+            </script>
+          </section>
+        </section>
+        <!-- Slide 10 -->
+        <section>
+          <section>
+            <p>The Canvas Drawing State</p>
+            <table style="margin-top: 50px;font-size: 30px;">
+              <tbody>
+                <tr>
+                  <td>save()</td>
+                  <td>Saves the current drawing context</td>
+                </tr>
+                <tr>
+                  <td>restore()</td>
+                  <td>Restores the most recent saved drawing context and makes it current</td>
+                </tr>
+              </tbody>
+            </table>
+          </section>
+          <section>
+            <h6>Code example</h6>
+            <pre><code style="font-size: 18px;" data-trim>
+              const canvas = document.getElementById('canvas4');
+              if (canvas && canvas.getContext) {
+                const ctx = canvas.getContext("2d");
+                if (ctx) {
+                  //set up some drawing information
+                  ctx.strokeStyle = "red";
+                  ctx.fillStyle = "yellow";
+                  ctx.lineWidth = 10;
+
+                  // draw the first Rectangle
+                  ctx.fillRect(25, 25, 100, 125);
+                  ctx.strokeRect(25, 25, 100, 125);
+
+                  // now, draw another rectangle with different settings
+                  ctx.save(); // this will save the current settings
+
+                  ...
+
+                  ctx.restore(); // now restore the original settings
+                  ...
+                }
+              }
+            </code></pre>
+          </section>
+        </section>
+        <!-- Slide 11 -->
+        <section>
+          <section><p>Arcs and Paths</p>
+            <ul>
+              <li style="font-size: 30px;margin: 20px 0px;">A <span style="color: yellow">Path</span> is a set of connected points, connected by lines or curves, and a path is either open or closed.</li>
+              <li style="font-size: 30px;margin-bottom: 20px;">The drawing contest always has one current path</li>
+              <li style="font-size: 30px;margin-bottom: 40px;">Closed path have the same starting and end point.</li>
+            </ul>
+            <table style="font-size: 30px;">
+              <tbody>
+                <tr>
+                  <td>beginPath()</td>
+                  <td>to begin creating a path</td>
+                </tr>
+                <tr>
+                  <td>stroke()</td>
+                  <td>to stroke current path</td>
+                </tr>
+                <tr>
+                  <td>fill()</td>
+                  <td>to fill current pat</td>
+                </tr>
+                <tr>
+                  <td>closePath()</td>
+                  <td>to close the path</td>
+                </tr>
+              </tbody>
+            </table></section>
+          <section>
+            <p><span style="color: yellow">Arcs</span> are curves that are portions os a circle.</p>
+            <p style="font-size: 30px;margin: 20px 0px;">Circle in canvas is just a full 360 degree or two pi radians arc.</p>
+            <pre>
+              <code data-trim style="font-size: 25px;">
+
+                arc(x, y, radius, startAngle, endAngle [, anticlockwise];
+
+                arc(75, 75, 50, 0, Math.PI * 0.5, false);
+
+              </code>
+            </pre>
+            
+          </section>
+          <section>
+            <p>Arcs Code example</p>
+            <pre><code data-trim style="font-size: 22px;">
+              const theCanvas = document.getElementById('canvas5');
+                if (theCanvas && theCanvas.getContext) {
+                  const ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    // Set up some drawing context settings
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.fillStyle = "#D40065";
+                    ctx.lineWidth = 5;
+        
+                    // stroke a quarter arc
+                    ctx.beginPath();
+                    ctx.arc(50, 150, 100, 0, 0.5 * Math.PI);
+                    ctx.stroke();
+        
+                    // stroke a half arc, going anti-clockwise
+                    ctx.beginPath();
+                    ctx.arc(300, 150, 100, 0, Math.PI, true);
+                    ctx.stroke();
+        
+                    // stroke and fill a circle
+                    ctx.beginPath();
+                    ctx.arc(550, 150, 100, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                  }
+                }
+            </code></pre>
+          </section>
+          <section>
+            <p>Result</p>
+            <canvas id="canvas5" width="700" height="300" style="background-color: #413f3f;"></canvas>
+            <script>
+              window.addEventListener("load", function () {
+                const theCanvas = document.getElementById('canvas5');
+                if (theCanvas && theCanvas.getContext) {
+                  const ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    // Set up some drawing context settings
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.fillStyle = "#D40065";
+                    ctx.lineWidth = 5;
+        
+                    // stroke a quarter arc
+                    ctx.beginPath();
+                    ctx.arc(50, 150, 100, 0, 0.5 * Math.PI);
+                    ctx.stroke();
+        
+                    // stroke a half arc, going anti-clockwise
+                    ctx.beginPath();
+                    ctx.arc(300, 150, 100, 0, Math.PI, true);
+                    ctx.stroke();
+        
+                    // stroke and fill a circle
+                    ctx.beginPath();
+                    ctx.arc(550, 150, 100, 0, 2 * Math.PI);
+                    ctx.fill();
+                    ctx.stroke();
+                  }
+                }
+              });
+            </script>
+          </section>
+          <section>
+            <p>Paths code example</p>
+            <pre><code data-trim style="font-size: 22px;">
+              const theCanvas = document.getElementById('canvas6');
+              if (theCanvas && theCanvas.getContext) {
+                const ctx = theCanvas.getContext("2d");
+                if (ctx) {
+                  // Set up some drawing context settings
+                  ctx.strokeStyle = "#ffffff";
+                  ctx.fillStyle = "#D40065";
+                  ctx.lineWidth = 5;
+      
+                  // draw an open path (not closed)
+                  ctx.beginPath();
+                  ctx.moveTo(25, 175);
+                  ctx.lineTo(50, 25);
+                  ctx.lineTo(125, 50);
+                  ctx.lineTo(175, 175);
+                  ctx.stroke();
+
+                  // draw a closed path
+                  ctx.beginPath();
+                  ctx.moveTo(225, 175);
+                  ctx.lineTo(250, 25);
+                  ctx.lineTo(325, 50);
+                  ctx.lineTo(375, 175);
+                  ctx.closePath();
+                  ctx.stroke();
+
+                  // draw and fill an unclosed path
+                  ctx.beginPath();
+                  ctx.moveTo(425, 175);
+                  ctx.lineTo(450, 25);
+                  ctx.lineTo(525, 50);
+                  ctx.lineTo(575, 175);
+                  ctx.fill();
+                  ctx.stroke();
+                }
+              }
+            </code></pre>
+          </section>
+          <section>
+            <p>Result</p>
+            <canvas id="canvas6" width="700" height="300" style="background-color: #413f3f;"></canvas>
+            <script>
+              window.addEventListener("load", function () {
+                const theCanvas = document.getElementById('canvas6');
+                if (theCanvas && theCanvas.getContext) {
+                  const ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    // Set up some drawing context settings
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.fillStyle = "#D40065";
+                    ctx.lineWidth = 5;
+        
+                    // draw an open path (not closed)
+                    ctx.beginPath();
+                    ctx.moveTo(25, 175);
+                    ctx.lineTo(50, 25);
+                    ctx.lineTo(125, 50);
+                    ctx.lineTo(175, 175);
+                    ctx.stroke();
+
+                    // draw a closed path
+                    ctx.beginPath();
+                    ctx.moveTo(225, 175);
+                    ctx.lineTo(250, 25);
+                    ctx.lineTo(325, 50);
+                    ctx.lineTo(375, 175);
+                    ctx.closePath();
+                    ctx.stroke();
+
+                    // draw and fill an unclosed path
+                    ctx.beginPath();
+                    ctx.moveTo(425, 175);
+                    ctx.lineTo(450, 25);
+                    ctx.lineTo(525, 50);
+                    ctx.lineTo(575, 175);
+                    ctx.fill();
+                    ctx.stroke();
+                  }
+                }
+              });
+            </script>
+          </section>
+        </section>
+        <!-- Slide 12 -->
+        <section>
+          <section>
+            <p>Bezier and quadratic curves</p>
+            <p style="font-size: 30px;margin: 20px 0px;"><span style="color: yellow">Bezier</span> curves have: start and end points, and two control points</p>
+            <p style="font-size: 30px;margin: 20px 0px;"><span style="color: yellow">Quadratic</span> curves have: start and end points, and only one control point</p>
+            <pre>
+              <code data-trim style="font-size: 25px;margin-top: 40px;">
+
+                bezierCurveTo(cx1, cy1, cx2, cy2, end1, end2);
+
+                quadraticCurveTo(cx, cy, x, y);
+
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>Bezier and Quadratic Curves Code Example</p>
+            <pre>
+              <code data-trim style="font-size: 22px;margin-top: 40px;">
+                const theCanvas = document.getElementById('canvas7');
+                if (theCanvas && theCanvas.getContext) {
+                  const ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.lineWidth = 5;
+
+                    // stroke a simple bezier curve
+                    ctx.beginPath();
+                    ctx.moveTo(50, 200);
+                    ctx.bezierCurveTo(50, 100, 200, 100, 200, 150);
+                    ctx.stroke();
+                    // now make the control points visible
+                    ctx.strokeStyle = "rgb(0,0,0)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(50, 200);
+                    ctx.lineTo(50, 100);
+                    ctx.lineTo(200, 100);
+                    ctx.lineTo(200, 150);
+                    ctx.stroke();
+
+                    // stroke a quadratic curve
+                    ctx.strokeStyle = "#008050";
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 200);
+                    ctx.quadraticCurveTo(400, 100, 600, 150);
+                    ctx.stroke();
+                    // now make the control points visible
+                    ctx.strokeStyle = "rgb(0,0,0)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 200);
+                    ctx.lineTo(400, 100);
+                    ctx.lineTo(600, 150);
+                    ctx.stroke();
+                  }
+                }
+              </code>
+            </pre>
+          </section>
+          <section>
+            <p>Result</p>
+            <canvas id="canvas7" width="700" height="300" style="background-color: #413f3f;"></canvas>
+            <script>
+              window.addEventListener("load", function () {
+                const theCanvas = document.getElementById('canvas7');
+                if (theCanvas && theCanvas.getContext) {
+                  const ctx = theCanvas.getContext("2d");
+                  if (ctx) {
+                    ctx.strokeStyle = "#ffffff";
+                    ctx.lineWidth = 5;
+
+                    // stroke a simple bezier curve
+                    ctx.beginPath();
+                    ctx.moveTo(50, 200);
+                    ctx.bezierCurveTo(50, 100, 200, 100, 200, 150);
+                    ctx.stroke();
+                    // now make the control points visible
+                    ctx.strokeStyle = "rgb(0,0,0)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(50, 200);
+                    ctx.lineTo(50, 100);
+                    ctx.lineTo(200, 100);
+                    ctx.lineTo(200, 150);
+                    ctx.stroke();
+
+                    // stroke a quadratic curve
+                    ctx.strokeStyle = "#008050";
+                    ctx.lineWidth = 5;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 200);
+                    ctx.quadraticCurveTo(400, 100, 600, 150);
+                    ctx.stroke();
+                    // now make the control points visible
+                    ctx.strokeStyle = "rgb(0,0,0)";
+                    ctx.lineWidth = 1;
+                    ctx.beginPath();
+                    ctx.moveTo(400, 200);
+                    ctx.lineTo(400, 100);
+                    ctx.lineTo(600, 150);
+                    ctx.stroke();
+                  }
+                }
+              });
+            </script>
+          </section>
+        </section>
+      </div>
+    </div>
+
+    <script src="dist/reveal.js"></script>
+    <script src="plugin/notes/notes.js"></script>
+    <script src="plugin/markdown/markdown.js"></script>
+    <script src="plugin/highlight/highlight.js"></script>
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        hash: true,
+
+        // Learn about plugins: https://revealjs.com/plugins/
+        plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
+      });
+    </script>
+  </body>
 </html>
